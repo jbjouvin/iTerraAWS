@@ -1,3 +1,11 @@
+terraform {
+  backend "consul" {
+    address = "demo.consul.io"
+    path    = "getting-started-RANDOMSTRING"
+    lock    = false
+  }
+}
+
 provider "aws" {
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
@@ -13,6 +21,7 @@ provider "aws" {
 #   instance = "${aws_instance.example.id}"
 # }
 
+
 module "consul" {
   source = "github.com/hashicorp/consul/terraform/aws"
 
@@ -21,3 +30,5 @@ module "consul" {
   region   = "${var.region}"
   servers  = "3"
 }
+
+
